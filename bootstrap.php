@@ -1,7 +1,42 @@
 <?php
 
-// TODO : load db config into php.activerecord config and set same default config as default for it
+// Load the utils manually, has some non-autoloadable functions
+require __DIR__.DS.'classes'.DS.'Utils.php';
 
+// Get Fuel's DB config
+$default = Config::get('db.active');
+$connections = array();
+foreach (Config::get('db', array()) as $cname => $cdata)
+{
+	if (is_array($cdata))
+	{
+		if ( ! empty($cdata['connection']['dsn']))
+		{
+			$connections[$cname] = $cdata['connection']['dsn'];
+		}
+		elseif ( ! empty($cdata['connection'])
+		{
+			$connections[$cname] = $cdata['type'].'://'.$cdata['connection']['username'].':'.
+				$cdata['connection']['password'].'@'.$cdata['connection']['hostname'].'/'.$cdata['connection']['database'];
+		}
+	}
+}
+
+// Load Fuel's DB config into php.AR
+\ActiveRecord\Config::initialize(function($cfg) use ($connections, $default)
+{
+	$db = \Config::get('db.current.connection');
+	$db['type'] = \Config::get('db.current.type');
+	$cfg->set_model_directory(APPPATH.'classes/model');
+	$cfg->set_connections(array(
+		'current' => $db['type'].'://'.$db['username'].':'.$db['password'].'@'.$db['hostname'].'/'.$db['database']
+	));
+	$cfg->set_default_connection('current');
+});
+
+// Register php.AR classes with autoloader
+// The filenames are left unchanged to allow easy updating, they don't have to follow Fuel's conventions
+// when registered like this.
 Fuel\Core\Autoloader::add_classes(array(
 
 	'ActiveRecord\\CallBack'			=> __DIR__.'/classes/CallBack.php',
