@@ -1,16 +1,6 @@
 <?php
-/**
- * Fuel
- *
- * Fuel is a fast, lightweight, community driven PHP5 framework.
- *
- * @package		Fuel
- * @version		1.0
- * @author		Fuel Development Team
- * @license		MIT License
- * @copyright	2010 - 2011 Fuel Development Team
- * @link		http://fuelphp.com
- */
+
+// TODO : load db config into php.activerecord config and set same default config as default for it
 
 Fuel\Core\Autoloader::add_classes(array(
 
@@ -50,7 +40,5 @@ Fuel\Core\Autoloader::add_classes(array(
 	'ActiveRecord\\Serialization'		=> __DIR__.'/classes/Serialization.php',
 	'ActiveRecord\\XmlSerializer'		=> __DIR__.'/classes/Serialization.php',
 ));
-
-Fuel\Core\Autoloader::add_namespace('\\ActiveRecord', PKGPATH.'activerecord'.DS.'classes');
 
 /* End of file bootstrap.php */
