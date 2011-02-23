@@ -9,6 +9,7 @@ Autoloader::add_classes(array(
 	'ActiveRecord\\Config'				=> __DIR__.'/classes/Config.php',
 	'ActiveRecord\\Connection'			=> __DIR__.'/classes/Connection.php',
 	'ActiveRecord\\ConnectionManager'	=> __DIR__.'/classes/ConnectionManager.php',
+	'ActiveRecord\\DateTime'            => __DIR__.'/classes/DateTime.php',
 	'ActiveRecord\\Model'				=> __DIR__.'/classes/Model.php',
 	'ActiveRecord\\Singleton'			=> __DIR__.'/classes/Singleton.php',
 	'ActiveRecord\\SQLBuilder'			=> __DIR__.'/classes/SQLBuilder.php',
