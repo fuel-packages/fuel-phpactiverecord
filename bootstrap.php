@@ -3,7 +3,7 @@
 // Register php.AR classes with autoloader
 // The filenames are left unchanged to allow easy updating, they don't have to follow Fuel's conventions
 // when registered like this.
-Fuel\Core\Autoloader::add_classes(array(
+Autoloader::add_classes(array(
 
 	'ActiveRecord\\CallBack'			=> __DIR__.'/classes/CallBack.php',
 	'ActiveRecord\\Config'				=> __DIR__.'/classes/Config.php',
