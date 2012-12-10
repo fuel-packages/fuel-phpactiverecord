@@ -8,6 +8,7 @@ Autoloader::add_classes(array(
 	'ActiveRecord\\CallBack'			=> __DIR__.'/classes/CallBack.php',
 	'ActiveRecord\\Config'				=> __DIR__.'/classes/Config.php',
 	'ActiveRecord\\Connection'			=> __DIR__.'/classes/Connection.php',
+	'ActiveRecord\\FuelQueryLogger'			=> __DIR__.'/classes/FuelQueryLogger.php',
 	'ActiveRecord\\ConnectionManager'	=> __DIR__.'/classes/ConnectionManager.php',
 	'ActiveRecord\\DateTime'            => __DIR__.'/classes/DateTime.php',
 	'ActiveRecord\\Model'				=> __DIR__.'/classes/Model.php',
@@ -72,6 +73,8 @@ foreach (Config::get('db', array()) as $cname => $cdata)
 	$cfg->set_model_directory(APPPATH.'classes/model');
 	$cfg->set_connections($connections);
 	$cfg->set_default_connection($default);
+	$cfg->set_logging(true);
+	$cfg->set_logger(new ActiveRecord\FuelQueryLogger());
 });
 
 /* End of file bootstrap.php */
