@@ -256,7 +256,7 @@ abstract class Connection
 	public function query($sql, &$values=array())
 	{
 		if ($this->logging)
-			$this->logger->log($sql);
+			$this->logger->log($sql, $values);
 
 		$this->last_query = $sql;
 
